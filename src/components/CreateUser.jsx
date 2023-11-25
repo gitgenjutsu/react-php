@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const CreateUser = () => {
     const [allInputs, setAllInputs] = useState({});
+    const navigate = useNavigate();
     const handleOnChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -9,7 +12,7 @@ export const CreateUser = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(allInputs);
+        axios.post('http://localhost:80/api/user/save', allInputs).then(() => navigate('/'));
     }
     return (
         <>
